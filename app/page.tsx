@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Header from "./_components/header";
+import Search from "./(home)/_components/search";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
               locale: ptBR,
             })}
           </span>
+        </div>
+        <div className="px-4 ">
+          <Search />
         </div>
       </section>
     </>
