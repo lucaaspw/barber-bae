@@ -52,6 +52,23 @@ export default async function Home() {
           </Carousel>
         </div>
       </section>
+      <section>
+        <div className="px-4 py-6">
+          <h4 className="mb-2 flex justify-between items-center text-muted-foreground">
+            Populares
+            <div className="flex gap-2 items-center text-primary">
+              <MoveLeft /><MoveRight />
+            </div>
+          </h4>
+          <Carousel>
+            <CarouselContent>
+              {barbershops.map((barbershop: any) => (
+                <BarberShopItem key={barbershop.id} barbershop={barbershop} />
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </section>
     </>
 
   );
