@@ -7,7 +7,7 @@ const BookingItem = () => {
       <Card>
         <CardContent className="p-0 flex justify-between">
           <div className="grid gap-3 p-4">
-            <Badge className="max-w-max bg-[#221c3d] text-primary hover:bg-[#221c3d]">Confirmado</Badge>
+            <Badge className="max-w-max rounded-lg bg-[#221c3d] text-primary hover:bg-[#221c3d]">Confirmado</Badge>
             <h3 className="font-bold">Corte de Cabelo</h3>
             <div className="flex gap-2 items-center">
               <Avatar>
