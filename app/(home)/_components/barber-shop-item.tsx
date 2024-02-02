@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/app/_components/ui/button";
 import { Badge } from "@/app/_components/ui/badge";
 import { Card, CardContent, CardHeader, } from "@/app/_components/ui/card";
@@ -5,11 +7,17 @@ import { CarouselItem } from "@/app/_components/ui/carousel";
 import { Barbershop } from "@prisma/client";
 import { ChevronRight, StarIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface BarberShopItemProps {
   barbershop: Barbershop;
 }
 const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
+  const router = useRouter();
+  const handleBookingClick = () => {
+    router.push(`/barbershops/${barbershop.id}`);
+  }
+
   return (
     <CarouselItem className="basis-1/2">
       <Card>
@@ -20,7 +28,7 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
         <CardContent className="px-2 pt-4 pb-2 grid gap-2">
           <h2 className="text-base">{barbershop.name}</h2>
           <p className="text-sm text-muted-foreground overflow-hidden text-ellipsis">{barbershop.address}</p>
-          <Button variant="secondary" className="flex justify-between items-center">
+          <Button onClick={handleBookingClick} variant="secondary" className="flex justify-between items-center">
             Reservar <ChevronRight/>
           </Button>
         </CardContent>
