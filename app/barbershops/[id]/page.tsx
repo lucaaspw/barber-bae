@@ -3,6 +3,7 @@ import BarbershopInfo from "./_components/barbershop-info";
 import ServiceItem from "./_components/service-item";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
 import { Info, Scissors } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/_components/ui/card";
 
 interface BarberShopDetailsPageProps {
   params: {
@@ -48,6 +49,18 @@ const BarberShopDetailsPage = async ({ params }: BarberShopDetailsPageProps) => 
               {barbershop.services.map((service: any) => (
                 <ServiceItem key={service.id} service={service} />
               ))}
+            </TabsContent>
+            <TabsContent className="grid gap-5" value="information">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Barbearia {barbershop.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base text-justify">
+                    Venha experimentar a excelência em cuidados capilares na Barbearia <span className="text-primary">{barbershop.name}</span>. Nossa barbearia oferece uma experiência única, onde a arte do corte e estilo se funde com um ambiente acolhedor e moderno. Com uma equipe de profissionais qualificados e apaixonados pelo que fazem, garantimos não apenas cortes impecáveis, mas também um atendimento personalizado que atende às suas necessidades e preferências individuais. Na Barbearia <span className="text-primary">{barbershop.name}</span>, cada cliente é tratado com cuidado e dedicação, buscando sempre superar expectativas e proporcionar resultados que elevam sua autoestima. Venha nos visitar e descubra o verdadeiro significado de estilo e sofisticação em cada corte. Seja bem-vindo à Barbearia <span className="text-primary">{barbershop.name}</span>, onde sua satisfação é nossa prioridade.
+                  </CardDescription>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>

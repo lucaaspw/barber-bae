@@ -2,17 +2,14 @@
 
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
-import { MenuIcon } from "lucide-react";
+import SideMenu from "./sidemenu";
 
 const Header = () => {
   return (
-    <Card className="rounded-none px-5 py-6">
+    <Card className="rounded-none px-4 py-6">
       <CardContent className="flex justify-between items-center p-0">
-        <Image src="/baebarberlogo.svg" alt="Bae Barber" height={22} width={130} />
-        <Button variant="outline" size="icon">
-          <MenuIcon/>
-        </Button>
+        <Image src="/baebarber-logo.svg" alt="Bae Barber" height={22} width={130} />
+        <SideMenu/>
       </CardContent>
     </Card>
   );

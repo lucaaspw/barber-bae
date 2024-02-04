@@ -6,12 +6,13 @@ import Image from "next/image";
 
 import { Barbershop } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import SideMenu from "@/app/_components/sidemenu";
 
 interface BarbershopInfoProps {
   barbershop: Barbershop;
 }
 
-const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
+const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
   const router = useRouter();
   const handleBackClick = () => {
     router.back();
@@ -21,12 +22,13 @@ const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
       <section>
         <div className="relative h-[270px] w-full">
           <Image className="opacity-60" style={{ objectFit: "cover", }} src={barbershop.imageUrl} fill alt={barbershop.name} />
-          <Button onClick={handleBackClick} variant="secondary" size="icon" className="absolute z-10 top-5 left-5">
-            <ChevronLeftIcon />
-          </Button>
-          <Button variant="secondary" size="icon" className="absolute z-10 top-5 right-5">
-            <MenuIcon />
-          </Button>
+          <div className="absolute z-10 px-4 top-5 w-full flex justify-between">
+            <Button onClick={handleBackClick} variant="secondary" size="icon">
+              <ChevronLeftIcon />
+            </Button>
+            <SideMenu />
+          </div>
+
         </div>
         <div className="px-4 py-6 grid gap-3 border-b border-solid">
           <h1 className="text-xl font-bold">{barbershop.name}</h1>
