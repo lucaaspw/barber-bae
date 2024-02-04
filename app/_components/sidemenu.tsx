@@ -10,7 +10,7 @@ import Link from "next/link";
 const SideMenu = () => {
   const { data, status } = useSession();
   const handleLogOut = () => signOut();
-  const handleLogIn = () => signIn();
+  const handleLogIn = () => signIn("google");
   return (
     <Sheet>
       <SheetTrigger asChild>

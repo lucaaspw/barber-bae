@@ -4,6 +4,8 @@ import ServiceItem from "./_components/service-item";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
 import { Info, Scissors } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/_components/ui/card";
+import { getServerSession } from "next-auth";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
 
 interface BarberShopDetailsPageProps {
   params: {
@@ -12,6 +14,7 @@ interface BarberShopDetailsPageProps {
 }
 
 const BarberShopDetailsPage = async ({ params }: BarberShopDetailsPageProps) => {
+  const session = await getServerSession(authOption);
   // TODO: redirecionar para home
   if (!params.id) {
     return null
@@ -47,7 +50,7 @@ const BarberShopDetailsPage = async ({ params }: BarberShopDetailsPageProps) => 
             </TabsList>
             <TabsContent className="grid gap-5" value="services">
               {barbershop.services.map((service: any) => (
-                <ServiceItem key={service.id} service={service} />
+                <ServiceItem key={service.id} service={service} isAuthenticate={!!session?.user} />
               ))}
             </TabsContent>
             <TabsContent className="grid gap-5" value="information">
