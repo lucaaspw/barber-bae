@@ -34,7 +34,6 @@ const SideMenu = () => {
                   {data.user?.name}
                   <span className="text-xs text-muted-foreground">{data.user?.email}</span>
                 </div>
-
               </div>
               <Button onClick={handleLogOut} variant="secondary">
                 <LogOut size={20} />

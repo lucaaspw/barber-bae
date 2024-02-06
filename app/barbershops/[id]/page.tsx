@@ -50,7 +50,7 @@ const BarberShopDetailsPage = async ({ params }: BarberShopDetailsPageProps) => 
             </TabsList>
             <TabsContent className="grid gap-5" value="services">
               {barbershop.services.map((service: any) => (
-                <ServiceItem key={service.id} service={service} isAuthenticate={!!session?.user} />
+                <ServiceItem key={service.id} barbershop={barbershop} service={service} isAuthenticate={!!session?.user} />
               ))}
             </TabsContent>
             <TabsContent className="grid gap-5" value="information">
