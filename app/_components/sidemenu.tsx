@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "./ui/button";
-import { CalendarDays, HomeIcon, LogIn, LogOut, MenuIcon, UserCircle } from "lucide-react";
+import { CalendarDays, HomeIcon, LogIn, LogOut, MenuIcon, User2, UserCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -28,7 +28,7 @@ const SideMenu = () => {
               <div className="flex items-center gap-3">
                 <Avatar>
                   <AvatarImage width={40} height={40} src={data.user?.image ?? "BA"} alt={data.user?.name ?? "Bae Barber"} />
-                  <AvatarFallback>{data.user?.image}</AvatarFallback>
+                  <AvatarFallback><User2/></AvatarFallback>
                 </Avatar>
                 <div className="grid">
                   {data.user?.name}
