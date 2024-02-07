@@ -12,16 +12,20 @@ import { saveBooking } from "../_actions/save-booking";
 import { signIn, useSession } from "next-auth/react";
 import { format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 interface ServiceItemProp {
   barbershop: Barbershop;
   service: Service;
   isAuthenticate: boolean;
 }
 const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) => {
+  const router = useRouter();
   const {data} = useSession();
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [hour, setHour] = useState<String | undefined>();
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
+  const [sheetIsOpen, setSheetIsOpen] = useState(false)
   const handleDateClick = (date: Date | undefined) => {
     setDate(date);
     setHour(undefined);
@@ -39,6 +43,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
     }
   }
 
+  
   const handleBookingSubmit = async () => {
     setSubmitIsLoading(true);
     try {
@@ -53,7 +58,18 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
         barbershopId: barbershop.id,
         date: newDate,
         userId: (data.user as any).id,
+      });
+
+      setSheetIsOpen(false)
+      setSubmitIsLoading(false);
+      toast("Reserva realizada com sucesso!", {
+        description: format(newDate, "'Para' dd 'de' MMMM 'às' HH':'mm'.'", {locale: ptBR, }),
+        action: {
+          label: "Visualizar",
+          onClick: () => router.push("/booking")
+        }
       })
+      
     } catch (error) {
       console.error(error)
     }
@@ -75,7 +91,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
                   currency: "BRL",
                 }).format(Number(service.price))}
               </span>
-              <Sheet>
+              <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
                 <SheetTrigger asChild>
                   <Button onClick={handleBookingClick} variant="secondary" className="w-32 flex justify-between items-center">
                     Reservar
@@ -149,8 +165,8 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
                         </Card>
                         <SheetFooter className="pt-6">
                           <Button onClick={handleBookingSubmit} disabled={!hour || !date || submitIsLoading} className="flex justify-between items-center">
-                            Confirmar Reserva 
-                            {submitIsLoading ? <Loader2 className="h-4 w-4 anumate-spin" /> : <ChevronRight />}
+                            Confirmar Reserva
+                            {submitIsLoading && <Loader2 className="h-4 w-4 animate-spin" /> || <ChevronRight />}
                             </Button>
                         </SheetFooter>
                       </div>
