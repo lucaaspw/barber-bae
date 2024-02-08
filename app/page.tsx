@@ -4,13 +4,33 @@ import Header from "./_components/header";
 import Search from "./(home)/_components/search";
 import BookingItem from "./_components/booking-item";
 import { db } from "./_lib/prisma";
-import { Carousel, CarouselContent } from "./_components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "./_components/ui/carousel";
 import BarberShopItem from "./(home)/_components/barber-shop-item";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOption } from "./api/auth/[...nextauth]/route";
 
 export default async function Home() {
+
+  const session = await getServerSession(authOption)
+
   // chamar prisma e pegas barbearias
-  const barbershops = await db.barbershop.findMany({})
+  const [barbershops, confirmedBookings] = await Promise.all([
+    db.barbershop.findMany({}),
+    session?.user ? db.booking.findMany({
+      where: {
+        userId: (session.user as any).id,
+        date: {
+          gte: new Date(),
+        }
+      },
+      include: {
+        service: true,
+        barbershop: true,
+      }
+    }) : Promise.resolve([]),
+  ]);
+
   return (
     <>
       <header>
@@ -29,10 +49,21 @@ export default async function Home() {
           <Search />
         </div>
         <div className="px-4 py-6">
-          <h4 className="mb-2 text-muted-foreground">Agendamento</h4>
-          <div>
-            <BookingItem />
-          </div>
+          {confirmedBookings && confirmedBookings.length > 0 && (
+            <>
+              <h4 className="mb-2 text-muted-foreground">Agendamento</h4>
+              <Carousel>
+                <CarouselContent>
+                  {confirmedBookings.map(booking => (
+                    <CarouselItem key={booking.id}>
+                      <BookingItem booking={booking} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </>
+          )}
+
         </div>
       </section>
       <section>
