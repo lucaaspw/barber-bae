@@ -48,7 +48,8 @@ const BookingsPage = async () => {
         <h1 className="text-xl font-bold">Agendamentos</h1>
       </div>
       <section className="px-4 ">
-        <h3 className="text-muted-foreground mb-2">Confirmados</h3>
+        {confirmedBookings.length > 0 && (<h3 className="text-muted-foreground mb-2">Confirmados</h3>)}
+        
         <div className="grid gap-3">
           {confirmedBookings.map((booking) => (
             <BookingItem booking={booking} key={booking.id} />
@@ -56,7 +57,8 @@ const BookingsPage = async () => {
         </div>
       </section>
       <section className="px-4 py-6">
-        <h3 className="text-muted-foreground mb-2">Finalizados</h3>
+        {finishedBookings.length > 0 && (<h3 className="text-muted-foreground mb-2">Finalizados</h3>)}
+        
         <div className="grid gap-3">
           {finishedBookings.map((booking) => (
             <BookingItem booking={booking} key={booking.id} />

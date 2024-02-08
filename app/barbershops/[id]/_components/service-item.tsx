@@ -28,9 +28,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
   const [sheetIsOpen, setSheetIsOpen] = useState(false)
   const [dayBookings, setDayBookings] = useState<Booking[]>([]);
-
-  console.log({dayBookings})
-
+  
   useEffect(() => {
     if(!date){
       return;
