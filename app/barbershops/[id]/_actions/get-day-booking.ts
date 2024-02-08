@@ -12,6 +12,6 @@ export const getDayBookings = async (barbershopId: string, date: Date) => {
        }
     }
   });
-
+  
   return bookings;
 }

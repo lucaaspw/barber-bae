@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { CancelBooking } from "../_actions/cancel-booking";
 import { toast } from "sonner";
 import { useState } from "react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogContent, AlertDialogTitle, AlertDialogTrigger } from "./ui/alert-dialog";
 
 interface BookingItemProps {
   booking: Prisma.BookingGetPayload<{
@@ -123,16 +124,36 @@ const BookingItem = ({ booking }: BookingItemProps) => {
             </CardContent>
           </Card>
         </div>
-        <SheetFooter className="px-4 py-6 flex items-center gap-3 flex-row">
+        <SheetFooter className="px-4 py-6 flex flex-row gap-3">
           <SheetClose asChild>
             <Button className="w-full" variant="secondary">Voltar</Button>
           </SheetClose>
-          {!isPast(booking.date)
-            ? <Button onClick={handleCancelClick} className="w-full" variant="destructive">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button className="w-full" variant="destructive">
                 Cancelar Reserva
-                {isDeleteLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin"/>}
               </Button>
-            : null}
+            </AlertDialogTrigger>
+            <AlertDialogContent className="w-[90%] px-4 rounded-md">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Cancelar reserva</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Tem certeza que deseja cancelar esse agendamento?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter className="flex-row justify-between gap-3 items-center">
+                <AlertDialogCancel asChild className="mt-0">
+                  <Button className="w-full" variant="secondary">Voltar</Button>
+                </AlertDialogCancel>
+                {!isPast(booking.date)
+                  ? <Button onClick={handleCancelClick} className="w-full" variant="destructive">
+                    Cancelar Reserva
+                    {isDeleteLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+                  </Button>
+                  : null}
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </SheetFooter>
       </SheetContent>
     </Sheet>

@@ -13,7 +13,7 @@ const BookingsPage = async () => {
     return redirect("/");
   }
 
-  const [confirmedBookings,finishedBookings ] = await Promise.all([
+  const [confirmedBookings, finishedBookings] = await Promise.all([
     db.booking.findMany({
       where: {
         userId: (session.user as any).id,
@@ -48,22 +48,29 @@ const BookingsPage = async () => {
         <h1 className="text-xl font-bold">Agendamentos</h1>
       </div>
       <section className="px-4 ">
-        {confirmedBookings.length > 0 && (<h3 className="text-muted-foreground mb-2">Confirmados</h3>)}
-        
-        <div className="grid gap-3">
-          {confirmedBookings.map((booking) => (
-            <BookingItem booking={booking} key={booking.id} />
-          ))}
-        </div>
+        {confirmedBookings.length > 0 && (
+          <>
+            <h3 className="text-muted-foreground mb-2">Confirmados</h3>
+            <div className="grid gap-3">
+              {confirmedBookings.map((booking) => (
+                <BookingItem booking={booking} key={booking.id} />
+              ))}
+            </div>
+          </>
+        )}
+
       </section>
       <section className="px-4 py-6">
-        {finishedBookings.length > 0 && (<h3 className="text-muted-foreground mb-2">Finalizados</h3>)}
-        
-        <div className="grid gap-3">
-          {finishedBookings.map((booking) => (
-            <BookingItem booking={booking} key={booking.id} />
-          ))}
-        </div>
+        {finishedBookings.length > 0 && (
+          <>
+            <h3 className="text-muted-foreground mb-2">Finalizados</h3>
+            <div className="grid gap-3">
+              {finishedBookings.map((booking) => (
+                <BookingItem booking={booking} key={booking.id} />
+              ))}
+            </div>
+          </>
+        )}
       </section>
     </>
   );
