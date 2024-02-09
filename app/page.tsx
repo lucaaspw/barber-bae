@@ -38,7 +38,7 @@ export default async function Home() {
       </header>
       <section>
         <div className="px-4 py-6 grid gap-1">
-          <h2 className="text-xl front-bold">Olá, Lucas G</h2>
+          <h2 className="text-xl front-bold">Olá, {session?.user ? `${session.user.name?.split(" ")[0]}!` : "Vamos agendar uma reserva hoje?"}</h2>
           <h6 className="capitalize">
             {format(new Date(), "EEEE',' dd 'de' MMMM", {
               locale: ptBR,
@@ -49,7 +49,7 @@ export default async function Home() {
           <Search />
         </div>
         <div className="px-4 py-6">
-          {confirmedBookings && confirmedBookings.length > 0 && (
+          {confirmedBookings && confirmedBookings.length > 0 ? (
             <>
               <h4 className="mb-2 text-muted-foreground">Agendamento</h4>
               <Carousel>
@@ -62,7 +62,7 @@ export default async function Home() {
                 </CarouselContent>
               </Carousel>
             </>
-          )}
+          ):(<p>Poxa, você não tem nada agendado ainda :/</p>)}
 
         </div>
       </section>
