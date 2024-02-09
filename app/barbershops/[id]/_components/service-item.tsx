@@ -10,7 +10,7 @@ import { Calendar } from "@/app/_components/ui/calendar";
 import React, { useEffect, useMemo, useState } from "react";
 import { saveBooking } from "../_actions/save-booking";
 import { signIn, useSession } from "next-auth/react";
-import { format, setHours, setMinutes } from "date-fns";
+import { addDays, format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -141,7 +141,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
                     onSelect={handleDateClick}
                     className="py-5 capitalize rounded-md"
                     locale={ptBR}
-                    fromDate={new Date()}
+                    fromDate={addDays(new Date(), 1)}
                     styles={{
                       head_cell: {
                         width: "100%",
