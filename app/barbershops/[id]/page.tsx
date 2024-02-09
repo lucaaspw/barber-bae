@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_components/ui/t
 import { Info, Scissors } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/_components/ui/card";
 import { getServerSession } from "next-auth";
-import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import { authOption } from "@/app/_lib/auth";
 
 interface BarberShopDetailsPageProps {
   params: {

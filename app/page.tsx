@@ -8,7 +8,7 @@ import { Carousel, CarouselContent, CarouselItem } from "./_components/ui/carous
 import BarberShopItem from "./(home)/_components/barber-shop-item";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { getServerSession } from "next-auth";
-import { authOption } from "./api/auth/[...nextauth]/route";
+import { authOption } from "./_lib/auth";
 
 export default async function Home() {
 
