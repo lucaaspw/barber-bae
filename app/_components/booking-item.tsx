@@ -130,9 +130,11 @@ const BookingItem = ({ booking }: BookingItemProps) => {
           </SheetClose>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button className="w-full" variant="destructive">
-                Cancelar Reserva
-              </Button>
+              {!isPast(booking.date)
+                ? <Button className="w-full" variant="destructive">
+                  Cancelar Reserva
+                </Button>
+                : null}
             </AlertDialogTrigger>
             <AlertDialogContent className="w-[90%] px-4 rounded-md">
               <AlertDialogHeader>
