@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import BarberShopItem from "../(home)/_components/barber-shop-item";
 import Header from "../_components/header";
 import { db } from "../_lib/prisma";
@@ -9,6 +10,9 @@ interface BarberShopsPageProps {
 }
 
 const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
+  if(!searchParams.search){
+    return redirect("/");
+  }
   const barbershops = await db.barbershop.findMany({
     where: {
       name: {
