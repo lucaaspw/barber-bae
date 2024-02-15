@@ -3,6 +3,7 @@ import BarberShopItem from "../(home)/_components/barber-shop-item";
 import Header from "../_components/header";
 import { db } from "../_lib/prisma";
 import { Carousel, CarouselContent, CarouselItem } from "@/app/_components/ui/carousel";
+import Search from "../(home)/_components/search";
 interface BarberShopsPageProps {
   searchParams: {
     search?: string;
@@ -10,7 +11,7 @@ interface BarberShopsPageProps {
 }
 
 const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
-  if(!searchParams.search){
+  if (!searchParams.search) {
     return redirect("/");
   }
   const barbershops = await db.barbershop.findMany({
@@ -25,7 +26,8 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
     <>
       <Header />
       <div className="px-4 py-6">
-        <h1 className="text-bold text-xl text-muted-foreground mb-5">Resultados para &quot;{searchParams.search}&quot;</h1>
+        <Search defaultValues={{search: searchParams.search,}} />
+        <h1 className="text-bold text-xl text-muted-foreground mt-5 mb-5">Resultados para &quot;{searchParams.search}&quot;</h1>
         <Carousel>
           <CarouselContent>
             {barbershops.map((barbershop) => (

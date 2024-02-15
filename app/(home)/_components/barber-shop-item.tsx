@@ -27,7 +27,7 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
         </CardHeader>
         <CardContent className="px-2 pt-4 pb-2 grid gap-2">
           <h2 className="text-base">{barbershop.name}</h2>
-          <p className="text-sm text-muted-foreground max-[420px]:overflow-hidden max-[420px]:text-ellipsis">{barbershop.address}</p>
+          <p className="text-sm text-muted-foreground max-[420px]:overflow-hidden max-[420px]:text-nowrap max-[420px]:text-ellipsis">{barbershop.address}</p>
           <Button onClick={handleBookingClick} variant="secondary" className="flex justify-between items-center">
             Reservar <ChevronRight/>
           </Button>

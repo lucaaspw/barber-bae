@@ -15,8 +15,13 @@ export default async function Home() {
   const session = await getServerSession(authOption)
 
   // chamar prisma e pegas barbearias
-  const [barbershops, confirmedBookings] = await Promise.all([
+  const [barbershops, recomendedBarberShops, confirmedBookings] = await Promise.all([
     db.barbershop.findMany({}),
+    db.barbershop.findMany({
+      orderBy: {
+        id: 'asc'
+      }
+    }),
     session?.user ? db.booking.findMany({
       where: {
         userId: (session.user as any).id,
@@ -93,7 +98,7 @@ export default async function Home() {
           </h4>
           <Carousel>
             <CarouselContent>
-              {barbershops.map((barbershop: any) => (
+              {recomendedBarberShops.map((barbershop: any) => (
                 <BarberShopItem key={barbershop.id} barbershop={barbershop} />
               ))}
             </CarouselContent>
