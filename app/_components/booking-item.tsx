@@ -66,7 +66,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
           </CardContent>
         </Card>
       </SheetTrigger>
-      <SheetContent className="p-0 w-[400px] sm:w-[540px]">
+      <SheetContent className="p-0 max-[420px]:w-[350px] max-[420px]:overflow-auto w-[400px]">
         <SheetHeader className="py-6 pl-4 text-left border-b">
           <SheetTitle>Informações da Reserva</SheetTitle>
         </SheetHeader>

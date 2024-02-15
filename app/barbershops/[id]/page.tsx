@@ -37,7 +37,7 @@ const BarberShopDetailsPage = async ({ params }: BarberShopDetailsPageProps) => 
       <BarbershopInfo barbershop={barbershop} />
       <section>
         <div className="px-4 py-6">
-          <Tabs defaultValue="services" className="w-[400px]">
+          <Tabs defaultValue="services" className="w-[350px]">
             <TabsList className="grid w-full gap-3 grid-cols-2">
               <TabsTrigger value="services" className="flex items-center gap-2" >
                 <Scissors size={20} />

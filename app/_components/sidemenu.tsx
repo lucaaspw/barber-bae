@@ -18,7 +18,7 @@ const SideMenu = () => {
           <MenuIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent className="p-0">
+      <SheetContent className="p-0 max-[420px]:w-[350px]">
         <SheetHeader className="py-6 pl-4 text-left border-b">
           <SheetTitle>Menu</SheetTitle>
         </SheetHeader>

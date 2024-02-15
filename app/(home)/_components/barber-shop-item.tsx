@@ -19,7 +19,7 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
   }
 
   return (
-    <CarouselItem className="basis-1/2">
+    <CarouselItem className=" basis-1/2 md:basis-1/3 lg:basis-1/4">
       <Card>
         <CardHeader className="p-0 relative h-28">
           <Image className="rounded-t-lg " width={189} height={189} src={barbershop.imageUrl} alt={barbershop.name} />
@@ -27,7 +27,7 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
         </CardHeader>
         <CardContent className="px-2 pt-4 pb-2 grid gap-2">
           <h2 className="text-base">{barbershop.name}</h2>
-          <p className="text-sm text-muted-foreground overflow-hidden text-ellipsis">{barbershop.address}</p>
+          <p className="text-sm text-muted-foreground max-[420px]:overflow-hidden max-[420px]:text-ellipsis">{barbershop.address}</p>
           <Button onClick={handleBookingClick} variant="secondary" className="flex justify-between items-center">
             Reservar <ChevronRight/>
           </Button>

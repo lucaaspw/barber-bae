@@ -110,7 +110,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
   return (
     <>
       <Card >
-        <CardContent className="p-5 flex items-center gap-5">
+        <CardContent className="max-[420px]:p-3 p-5 flex items-center max-[420px]:gap-2 gap-5">
           <div className="relative min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px]">
             <Image className="rounded-md" fill style={{ objectFit: "contain" }} src={service.imageUrl} alt={service.name} />
           </div>
@@ -126,12 +126,12 @@ const ServiceItem = ({ barbershop, service, isAuthenticate }: ServiceItemProp) =
               </span>
               <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
                 <SheetTrigger asChild>
-                  <Button onClick={handleBookingClick} variant="secondary" className="w-32 flex justify-between items-center">
+                  <Button onClick={handleBookingClick} variant="secondary" className="max-[420px]:w-30 max-[420px]:px-2 max-[420px]:py-2 flex justify-between items-center">
                     Reservar
                     <ChevronRight />
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="p-0 w-[400px] sm:w-[540px]">
+                <SheetContent className="p-0 w-[400px] max-[420px]:w-[350px] max-[420px]:overflow-auto">
                   <SheetHeader className="py-6 pl-4 text-left border-b">
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>
